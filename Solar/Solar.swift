@@ -43,6 +43,8 @@ public struct Solar {
     public fileprivate(set) var nauticalSunset: Date?
     public fileprivate(set) var astronomicalSunrise: Date?
     public fileprivate(set) var astronomicalSunset: Date?
+    public fileprivate(set) var goldenSunrise: Date?
+    public fileprivate(set) var goldenSunset:Date?
     
     // MARK: Init
     
@@ -72,6 +74,8 @@ public struct Solar {
         nauticalSunset = calculate(.sunset, for: date, and: .nautical)
         astronomicalSunrise = calculate(.sunrise, for: date, and: .astronimical)
         astronomicalSunset = calculate(.sunset, for: date, and: .astronimical)
+        goldenSunrise = calculate(.sunrise, for: date, and: .goldenStart)
+        goldenSunset = calculate(.sunset, for: date, and: .goldenStart)
     }
     
     // MARK: - Private functions
@@ -83,6 +87,7 @@ public struct Solar {
     
     /// Used for generating several of the possible sunrise / sunset times
     fileprivate enum Zenith: Double {
+        case goldenStart = 84.83
         case official = 90.83
         case civil = 96
         case nautical = 102
